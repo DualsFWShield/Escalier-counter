@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Règles du Jeu - Escalier</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <button id="theme-toggle-btn"><i class="fas fa-moon"></i> Mode Sombre</button>
+        <h1><i class="fas fa-book"></i> Règles du Jeu - Escalier</h1>
+        <section>
+            <h2><i class="fas fa-users"></i> Nombre de joueurs</h2>
+            <p>De 4 à 6 joueurs</p>
+        </section>
+        <section>
+            <h2><i class="fas fa-cubes"></i> Matériel</h2>
+            <p>Un jeu de 52 cartes, avec quelques ajustements :</p>
+            <ul>
+                <li>À 6 joueurs : ajouter les deux jokers.</li>
+            </ul>
+        </section>
+        <section>
+            <h2><i class="fas fa-signal"></i> Niveau de difficulté</h2>
+            <p>Moyen</p>
+        </section>
+        <section>
+            <h2><i class="fas fa-bullseye"></i> Objectif du jeu</h2>
+            <p>Faire le plus de levées possible pour marquer un maximum de points.</p>
+        </section>
+        <section>
+            <h2><i class="fas fa-gamepad"></i> Déroulement de la partie</h2>
+            <h3><i class="fas fa-layer-group"></i> 1. Structure des manches</h3>
+            <p>Le jeu se joue en une succession de manches. Chaque manche comporte un nombre de cartes par joueur :</p>
+            <ul>
+                <li>D'abord croissant (1 carte, 2 cartes, 3 cartes, etc.).</li>
+                <li>Puis décroissant (jusqu’à revenir à 1 carte).</li>
+            </ul>
+            <p><strong>Nombre de manches selon les joueurs :</strong></p>
+            <ul>
+                <li>4 et 5 joueurs : 10 croissantes + 10 décroissantes = 20 manches.</li>
+                <li>6 joueurs : 9 croissantes + 9 décroissantes = 16 manches.</li>
+            </ul>
+            <h3><i class="fas fa-hand-paper"></i> 2. Déroulement d’une manche</h3>
+            <ul>
+                <li><strong>Distribution :</strong> Le donneur distribue le bon nombre de cartes à chaque joueur.</li>
+                <li><strong>Annonce :</strong> Chaque joueur annonce combien de levées il pense remporter (appelé contrat).</li>
+                <ul>
+                    <li>⚠️ Le total des annonces ne doit pas être égal au nombre total de levées possibles dans la manche.</li>
+                </ul>
+                <li><strong>Atout :</strong> Le donneur retourne la carte suivante du paquet. Sa couleur devient l’atout de la manche.</li>
+                <li><strong>Jeu :</strong></li>
+                <ul>
+                    <li>Les joueurs jouent une carte chacun à leur tour.</li>
+                    <li>Il faut suivre la couleur si on en a.</li>
+                    <li>Si on n’a pas la couleur, on peut "couper" avec de l'atout ou jouer une autre carte.</li>
+                    <li>La carte la plus forte l’emporte, avec priorité donnée à la couleur d’atout.</li>
+                    <li>Le gagnant de la levée commence la suivante.</li>
+                </ul>
+            </ul>
+            <div class="example">
+                <h4><i class="fas fa-lightbulb"></i> Exemple :</h4>
+                <p>Si l’atout est <strong>cœur</strong> et qu’un joueur joue un <strong>10 de cœur</strong>, il battra un <strong>roi de pique</strong>.</p>
+            </div>
+        </section>
+        <section>
+            <h2><i class="fas fa-calculator"></i> Système de points</h2>
+            <ul>
+                <li><strong>Si un joueur réussit son contrat :</strong></li>
+                <ul>
+                    <li>Il marque 5 points + 5 points par levée réussie.</li>
+                </ul>
+                <li><strong>S’il échoue (trop ou pas assez de levées) :</strong></li>
+                <ul>
+                    <li>Il perd 5 points + 5 points par levée d’écart.</li>
+                </ul>
+            </ul>
+            <div class="example">
+                <h4><i class="fas fa-lightbulb"></i> Exemple :</h4>
+                <p>Si un joueur annonce 3 levées et en fait 5, il perdra <strong>15 points</strong> (5 + 5 × 2).</p>
+            </div>
+        </section>
+        <section>
+            <h2><i class="fas fa-flag-checkered"></i> Fin du jeu</h2>
+            <p>À la fin de la dernière manche, le joueur avec le plus de points gagne la partie.</p>
+        </section>
+        <button onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i> Retour à l'accueil</button>
+    </div>
+    <script>
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-toggle-btn').innerHTML = '<i class="fas fa-sun"></i> Mode Clair';
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.getElementById('theme-toggle-btn').innerHTML = '<i class="fas fa-moon"></i> Mode Sombre';
+            }
+        }
+
+        // Charger le thème depuis le localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+            const isDarkMode = document.body.classList.toggle('dark-mode');
+            const newTheme = isDarkMode ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+    </script>
+</body>
+</html>

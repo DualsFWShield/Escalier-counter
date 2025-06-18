@@ -1,0 +1,322 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Pour que le contenu commence en haut si long */
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Ajustez selon vos besoins */
+    transition: all 0.3s ease;
+}
+
+h1, h2, h3 {
+    color: #007bff; /* Bleu moderne */
+    margin-bottom: 0.8em;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-size: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+h1 i {
+    font-size: 1.2em;
+    color: #007bff;
+}
+
+h2 {
+    border-bottom: 2px solid #007bff30;
+    padding-bottom: 0.3em;
+    font-size: 1.8em;
+}
+
+.screen {
+    display: none; /* Caché par défaut */
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+.screen.active-screen {
+    display: block; /* Affiché si actif */
+}
+
+/* --- Formulaires et Inputs --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: calc(100% - 22px); /* Prend en compte padding et bordure */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type="number"] {
+    width: 80px; /* Plus petit pour les nombres */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+button:hover {
+    background-color: #0056b3;
+}
+button#cancel-game-btn, button#new-game-btn {
+    background-color: #dc3545; /* Rouge pour annuler/nouveau */
+}
+button#cancel-game-btn:hover, button#new-game-btn:hover {
+    background-color: #c82333;
+}
+button#load-game-btn {
+    background-color: #28a745; /* Vert pour reprendre */
+}
+button#load-game-btn:hover {
+    background-color: #218838;
+}
+
+
+#player-names-inputs div,
+#bids-inputs div,
+#tricks-inputs div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px; /* Espace entre label et input */
+}
+#player-names-inputs label,
+#bids-inputs label,
+#tricks-inputs label {
+    flex-basis: 150px; /* Largeur fixe pour les labels */
+    margin-bottom: 0;
+}
+
+
+/* --- Tableaux --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #0056b3; /* Bleu plus foncé pour un meilleur contraste */
+    color: #ffffff; /* Texte blanc */
+}
+td {
+    background-color: #f9f9f9;
+}
+tbody tr:nth-child(even) td {
+    background-color: #efefef; /* Mode clair */
+}
+
+body.dark-mode tbody tr:nth-child(even) td {
+    background-color: #2a2a2a; /* Couleur adaptée au mode sombre */
+    color: #e0e0e0; /* Texte clair pour contraste */
+}
+
+/* --- Graphiques --- */
+.charts-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux graphiques de passer à la ligne si pas assez de place */
+    gap: 20px; /* Espace entre les graphiques */
+    margin-bottom: 20px;
+}
+.charts-container canvas {
+    max-width: 100%; /* S'assure que le canvas ne dépasse pas son conteneur */
+    flex: 1 1 400px; /* Flex grow, shrink, basis. Permet d'avoir 2 graphiques côte à côte si possible */
+    max-height: 400px; /* Limite la hauteur maximale des graphiques */
+    height: auto; /* Ajuste la hauteur automatiquement */
+}
+
+/* Utile pour les inputs de contrat/levées */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.input-group label {
+    margin-right: 10px;
+    min-width: 120px; /* Ajustez pour aligner les inputs */
+}
+
+/* Spinner (optionnel, pour indiquer chargement ou calcul) */
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border-left-color: #09f;
+    animation: spin 1s ease infinite;
+    margin: 20px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    button {
+        font-size: 0.9em;
+        padding: 10px 15px;
+    }
+    table {
+        font-size: 0.8em;
+    }
+    th, td {
+        padding: 8px;
+    }
+}
+
+/* --- Dark Mode --- */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .container {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3 {
+    color: #90caf9;
+}
+
+body.dark-mode th {
+    background-color: #333;
+}
+
+body.dark-mode td {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode button {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode button:hover {
+    background-color: #555;
+}
+
+/* Champs d'entrée adaptés au mode sombre */
+body.dark-mode input[type="text"],
+body.dark-mode input[type="number"],
+body.dark-mode select {
+    background-color: #333; /* Fond sombre */
+    color: #e0e0e0; /* Texte clair */
+    border: 1px solid #555; /* Bordure plus sombre */
+}
+
+body.dark-mode input[type="text"]::placeholder,
+body.dark-mode input[type="number"]::placeholder {
+    color: #888; /* Placeholder plus clair */
+}
+
+/* Styles pour les exemples */
+.example {
+    background-color: #f9f9f9;
+    border-left: 5px solid #007bff;
+    padding: 10px 15px;
+    margin: 15px 0;
+    border-radius: 4px;
+    font-style: italic;
+}
+
+body.dark-mode .example {
+    background-color: #2a2a2a;
+    border-left-color: #90caf9;
+}
+
+/* Styles pour le tableau récapitulatif */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.summary-table th {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.summary-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.summary-table tbody tr:nth-child(even) td {
+    background-color: #efefef;
+}
+
+body.dark-mode .summary-table th {
+    background-color: #333;
+}
+
+body.dark-mode .summary-table td {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .summary-table tbody tr:nth-child(even) td {
+    background-color: #2a2a2a;
+}
+
+/* Bouton de retour */
+button {
+    margin-top: 20px;
+}
