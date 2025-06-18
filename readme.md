@@ -15,11 +15,11 @@ Escalier Counter is a web-based application designed to manage and track scores 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/DualsFWShield/escalier-counter.git
+   git clone https://github.com/DualsFWShield/Escalier-counter.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd escalier-counter
+   cd Escalier-counter
    ```
 3. Open `index.html` in your browser to start the application.
 
